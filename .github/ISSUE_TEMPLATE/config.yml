@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Join the Discussion
+    url: https://github.com/Idea-Verse/void/discussions
+    about: "Chat with the community, ask questions, and share thoughts"
+  - name: 📖 Read the Contributing Guide
+    url: https://github.com/Idea-Verse/void/blob/main/CONTRIBUTING.md
+    about: "Learn how to contribute to Void"

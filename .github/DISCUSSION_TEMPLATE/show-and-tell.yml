@@ -1,0 +1,31 @@
+title: "[Showcase] "
+labels: []
+body:
+  - type: textarea
+    id: built
+    attributes:
+      label: What did you build?
+      description: Tell us about your creation.
+    validations:
+      required: true
+  - type: textarea
+    id: demo
+    attributes:
+      label: Demo/Screenshot
+      description: Show us what you built!
+    validations:
+      required: true
+  - type: input
+    id: related_idea
+    attributes:
+      label: Related idea
+      description: Link to the original idea issue.
+    validations:
+      required: false
+  - type: textarea
+    id: key_learnings
+    attributes:
+      label: Key learnings
+      description: What did you learn while building this?
+    validations:
+      required: false

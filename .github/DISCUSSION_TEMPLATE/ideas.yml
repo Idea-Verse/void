@@ -1,0 +1,29 @@
+title: "[Brainstorm] "
+labels: []
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: What area does this relate to?
+      options:
+        - Frontend
+        - Backend
+        - Design
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: thought
+    attributes:
+      label: Describe your thought
+      description: Elaborate on your idea.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Any references or inspiration?
+      description: Links, images, or examples.
+    validations:
+      required: false
