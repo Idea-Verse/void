@@ -6,9 +6,15 @@ body:
     attributes:
       label: What area does this relate to?
       options:
-        - Frontend
-        - Backend
-        - Design
+        - Developer Tools & CLI
+        - API & Infrastructure
+        - Frontend & Web
+        - Backend & Services
+        - AI & Machine Learning
+        - Security & Auth
+        - DevOps & CI/CD
+        - Mobile & Desktop Apps
+        - Design & UI/UX
         - Documentation
         - Other
     validations:
