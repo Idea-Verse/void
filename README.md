@@ -66,17 +66,17 @@ An **open-source repository where every idea matters.** No matter how big or sma
 
 | Action | Description | Link |
 | :---: | :--- | :--- |
-| **💡 Submit** | Have a spark? Share your idea with the community. | [Submit an Idea](../../issues/new?template=idea_submission.yml) |
-| **🔍 Browse** | Explore ideas submitted by others. | [Browse Ideas](../../issues) |
-| **💬 Discuss** | Join the conversation, share feedback, and brainstorm. | [Join Discussions](../../discussions) |
+| **💡 Propose Idea** | Have a spark? Share your idea in Discussions. | [Propose an Idea](../../discussions/new?category=ideas) |
+| **💬 Discuss & Vote** | Join discussions, vote with 👍 (+1), and evaluate ideas. | [Join Discussions](../../discussions) |
+| **🔍 Browse Tasks** | Explore technical tasks and bugs ready to build. | [Browse Issues](../../issues) |
 | **🛠️ Build** | Ready to code? Help implement an approved idea. | [Contribute](./CONTRIBUTING.md) |
 
 ## ✨ Features
 
-- **💡 Idea Submissions:** Easily propose new projects or features using our structured Issue templates.
-- **💬 Collaborative Discussions:** Engage in threaded conversations to refine ideas and explore possibilities.
-- **🛠️ Open Implementation:** Anyone can claim an idea and start building it.
-- **🏷️ Clear Tracking:** Monitor the progress of ideas through standard GitHub labels and milestones.
+- **💡 Discussions-Only Ideation:** Ideas live exclusively in GitHub Discussions (`💡 Ideas`) to avoid Issue naming conflicts.
+- **💬 Potential-First Evaluation:** Threaded conversations and 👍 (+1) upvotes to validate an idea's potential before building.
+- **🛠️ Open Implementation:** Anyone can claim a validated task and start building it.
+- **🏷️ Clear Tracking:** Monitor the progress of ideas from proposal to shipping.
 - **❤️ Community-Driven:** Built by the community, for the community.
 
 ## 🧬 Idea Lifecycle
