@@ -1,8 +1,8 @@
 <div align="center">
   
-  <img src="./assets/logo.png" width="180" alt="Void Logo" />
+  <img src="./assets/logo.png" width="220" alt="Void Logo" />
 
-  # 🕳️ Void
+  <br>
 
   **Start from Void. Build without limits.**
   
