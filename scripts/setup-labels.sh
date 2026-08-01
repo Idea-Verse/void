@@ -25,35 +25,38 @@ fi
 
 echo -e "\033[0;32mCreating custom labels...\033[0m"
 
-# Define labels: name:color:description
+# Define labels: name|color|description
 LABELS=(
-  "idea: new:0E8A16:Newly submitted idea"
-  "idea: discussing:1D76DB:Idea is being discussed"
-  "idea: approved:5319E7:Idea has been approved for implementation"
-  "idea: in-progress:FBCA04:Idea is being implemented"
-  "idea: completed:0E8A16:Idea has been implemented and merged"
-  "idea: declined:B60205:Idea was declined"
-  "cat: feature:D93F0B:New feature or enhancement"
-  "cat: tool:E99695:Developer tool or utility"
-  "cat: design:BFD4F2:Design or UI related"
-  "cat: integration:C2E0C6:Integration with external service"
-  "cat: docs:0075CA:Documentation improvement"
-  "priority: low:C5DEF5:Nice to have"
-  "priority: medium:FBCA04:Important"
-  "priority: high:B60205:Critical"
-  "good first idea:7057FF:Great for newcomers"
-  "help wanted:008672:Extra attention is needed"
-  "needs discussion:D876E3:Needs more community input"
-  "bug:D73A4A:Something isn't working"
+  "idea: new|0E8A16|Newly submitted idea"
+  "idea: discussing|1D76DB|Idea is being discussed"
+  "idea: approved|5319E7|Idea has been approved for implementation"
+  "idea: in-progress|FBCA04|Idea is being implemented"
+  "idea: completed|0E8A16|Idea has been implemented and merged"
+  "idea: declined|B60205|Idea was declined"
+  "cat: feature|D93F0B|New feature or enhancement"
+  "cat: tool|E99695|Developer tool or utility"
+  "cat: design|BFD4F2|Design or UI related"
+  "cat: integration|C2E0C6|Integration with external service"
+  "cat: docs|0075CA|Documentation improvement"
+  "priority: low|C5DEF5|Nice to have"
+  "priority: medium|FBCA04|Important"
+  "priority: high|B60205|Critical"
+  "good first idea|7057FF|Great for newcomers"
+  "help wanted|008672|Extra attention is needed"
+  "needs discussion|D876E3|Needs more community input"
+  "bug|D73A4A|Something isn't working"
 )
 
 for entry in "${LABELS[@]}"; do
-  IFS=':' read -r name color description <<< "$entry"
+  IFS='|' read -r name color description <<< "$entry"
   
-  # Trim spaces (in case there are any extra)
-  name=$(echo "$name" | xargs)
-  color=$(echo "$color" | xargs)
-  description=$(echo "$description" | xargs)
+  # Trim spaces
+  name="${name#"${name%%[![:space:]]*}"}"
+  name="${name%"${name##*[![:space:]]}"}"
+  color="${color#"${color%%[![:space:]]*}"}"
+  color="${color%"${color##*[![:space:]]}"}"
+  description="${description#"${description%%[![:space:]]*}"}"
+  description="${description%"${description##*[![:space:]]}"}"
   
   # Try to edit existing or create new
   if gh label edit "$name" --color "$color" --description "$description" --repo "$REPO" 2>/dev/null; then
