@@ -43,7 +43,6 @@ jobs:
             TITLE="🚀 PR Merged: #${PR_NUMBER} — ${PR_TITLE}"
             URL="$PR_URL"
             AUTHOR="$PR_AUTHOR"
-            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="PR Merged 🚀"
             COLOR=5763719 # Green (0x57F287)
             BODY_PREVIEW="$PR_BODY"
@@ -53,7 +52,6 @@ jobs:
             TITLE="🔀 New PR Opened: #${PR_NUMBER} — ${PR_TITLE}"
             URL="$PR_URL"
             AUTHOR="$PR_AUTHOR"
-            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="New PR 🔀"
             COLOR=3447003 # Blue (0x3498DB)
             BODY_PREVIEW="$PR_BODY"
@@ -63,7 +61,6 @@ jobs:
             TITLE="💡 New Discussion: ${DISCUSSION_TITLE}"
             URL="$DISCUSSION_URL"
             AUTHOR="$DISCUSSION_AUTHOR"
-            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="New Discussion 💡"
             COLOR=15844367 # Gold (0xF1C40F)
             BODY_PREVIEW="$DISCUSSION_BODY"
@@ -78,15 +75,19 @@ jobs:
             BODY_PREVIEW="${BODY_PREVIEW:0:277}..."
           fi
 
+          # Author URLs
+          AUTHOR_URL="https://github.com/${AUTHOR}"
+          AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
+
           # Build Discord Webhook Payload using jq safely
           PAYLOAD=$(jq -n \
             --arg username "OriginDock Incubator" \
-            --arg avatar_url "https://github.com/OriginDock.png" \
+            --arg content "$TITLE" \
             --arg title "$TITLE" \
             --arg url "$URL" \
             --arg author "$AUTHOR" \
             --arg author_avatar "$AUTHOR_AVATAR" \
-            --arg author_url "https://github/$AUTHOR" \
+            --arg author_url "$AUTHOR_URL" \
             --arg repo "${{ github.repository }}" \
             --arg event_label "$EVENT_LABEL" \
             --arg desc "$BODY_PREVIEW" \
@@ -94,11 +95,11 @@ jobs:
             --argjson color "$COLOR" \
             '{
               username: $username,
-              avatar_url: $avatar_url,
+              content: $content,
               embeds: [{
                 title: $title,
                 url: $url,
-                description: $desc,
+                description: (if $desc != "" then $desc else "No description provided." end),
                 color: $color,
                 author: {
                   name: $author,
@@ -110,17 +111,26 @@ jobs:
                   { name: "Event Type", value: $event_label, inline: true }
                 ],
                 footer: {
-                  text: "OriginDock Incubator • GitHub",
-                  icon_url: "https://github.com/OriginDock.png"
+                  text: "OriginDock Incubator • GitHub"
                 },
                 timestamp: $timestamp
               }]
             }')
 
-          # Send HTTP POST to Discord Webhook
-          curl -s -H "Content-Type: application/json" \
+          # Send HTTP POST to Discord Webhook and output HTTP response status
+          HTTP_STATUS=$(curl -s -o /tmp/discord_resp.json -w "%{http_code}" \
+               -H "Content-Type: application/json" \
                -X POST \
                -d "$PAYLOAD" \
-               "$DISCORD_WEBHOOK_URL"
+               "$DISCORD_WEBHOOK_URL")
+
+          echo "Response HTTP Status: $HTTP_STATUS"
+          cat /tmp/discord_resp.json
+          echo ""
+
+          if [ "$HTTP_STATUS" -ne 200 ] && [ "$HTTP_STATUS" -ne 204 ]; then
+            echo "❌ Discord webhook POST failed with status $HTTP_STATUS!"
+            exit 1
+          fi
 
           echo "✅ Discord announcement sent successfully!"
