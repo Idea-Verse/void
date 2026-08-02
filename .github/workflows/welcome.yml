@@ -19,7 +19,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const commentBody = `👋 Hello @${context.payload.issue.user.login}!\n\nThank you for submitting this idea to **Void**! We're excited to see your contribution. \n\nThe community will review and discuss your idea shortly. Feel free to join the ongoing conversations in the [Discussions tab](https://github.com/${context.repo.owner}/${context.repo.repo}/discussions).\n\nStart from Void. Build without limits. 🚀`;
+            const commentBody = `👋 Hello @${context.payload.issue.user.login}!\n\nThank you for submitting this idea to **Incubator**! We're excited to see your contribution. \n\nThe community will review and discuss your idea shortly. Feel free to join the ongoing conversations in the [Discussions tab](https://github.com/${context.repo.owner}/${context.repo.repo}/discussions).\n\nStart from Incubator. Build without limits. 🚀`;
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -32,7 +32,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const commentBody = `🎉 Welcome @${context.payload.pull_request.user.login}!\n\nThank you so much for your pull request! We really appreciate your effort in helping build **Void**. \n\nA maintainer will review your code as soon as possible. Please make sure your PR follows our contributing guidelines and all tests pass.\n\nStart from Void. Build without limits. ✨`;
+            const commentBody = `🎉 Welcome @${context.payload.pull_request.user.login}!\n\nThank you so much for your pull request! We really appreciate your effort in helping build **Incubator**. \n\nA maintainer will review your code as soon as possible. Please make sure your PR follows our contributing guidelines and all tests pass.\n\nStart from Incubator. Build without limits. ✨`;
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

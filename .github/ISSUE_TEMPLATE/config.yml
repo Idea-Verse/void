@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💡 Propose an Idea (Discussions Only)
-    url: https://github.com/Idea-Verse/void/discussions/new?category=ideas
+    url: https://github.com/OriginDock/incubator/discussions/new?category=ideas
     about: "Ideas live exclusively in Discussions! Share your idea for community voting and evaluation."
   - name: 💬 Join General Discussion
-    url: https://github.com/Idea-Verse/void/discussions
+    url: https://github.com/OriginDock/incubator/discussions
     about: "Chat with the community, ask questions, and share thoughts."
   - name: 📖 Read the Contributing Guide
-    url: https://github.com/Idea-Verse/void/blob/main/CONTRIBUTING.md
-    about: "Learn how to contribute to Void."
+    url: https://github.com/OriginDock/incubator/blob/main/CONTRIBUTING.md
+    about: "Learn how to contribute to Incubator."

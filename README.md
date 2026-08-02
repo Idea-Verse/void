@@ -1,26 +1,26 @@
 <div align="center">
   
-  <img src="./assets/logo.png" width="220" alt="Void Logo" />
+  <img src="./assets/logo.png" width="220" alt="Incubator Logo" />
 
   <br>
 
-  **Start from Void. Build without limits.**
+  **Start from Incubator. Build without limits.**
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-  [![GitHub Issues](https://img.shields.io/github/issues/Idea-Verse/void)](https://github.com/Idea-Verse/void/issues)
-  [![GitHub Discussions](https://img.shields.io/github/discussions/Idea-Verse/void)](https://github.com/Idea-Verse/void/discussions)
-  [![Contributors](https://img.shields.io/github/contributors/Idea-Verse/void)](https://github.com/Idea-Verse/void/graphs/contributors)
+  [![GitHub Issues](https://img.shields.io/github/issues/OriginDock/incubator)](https://github.com/OriginDock/incubator/issues)
+  [![GitHub Discussions](https://img.shields.io/github/discussions/OriginDock/incubator)](https://github.com/OriginDock/incubator/discussions)
+  [![Contributors](https://img.shields.io/github/contributors/OriginDock/incubator)](https://github.com/OriginDock/incubator/graphs/contributors)
 
 </div>
 
 ---
 
-## 📖 What is Void?
+## 📖 What is Incubator?
 
-Void is an **open-source, GitHub-native community** where ideas are shared, validated, and built — together. No gatekeepers. No paywalls. No scams. Just real people collaborating on real ideas using the tools developers already know and trust: **Issues, Discussions, and Pull Requests.**
+Incubator is an **open-source, GitHub-native community** where ideas are shared, validated, and built — together. No gatekeepers. No paywalls. No scams. Just real people collaborating on real ideas using the tools developers already know and trust: **Issues, Discussions, and Pull Requests.**
 
-Everything starts from nothing. Every great product, every world-changing project — they all began as a spark in someone's mind. **Void is where that spark finds its fire.**
+Everything starts from nothing. Every great product, every world-changing project — they all began as a spark in someone's mind. **Incubator is where that spark finds its fire.**
 
 ---
 
@@ -38,11 +38,11 @@ Here's the problem today:
 
 🚫 **Scams & closed ecosystems** — Platforms that promise collaboration often hide behind paywalls, harvest your data, or are breeding grounds for bad actors.
 
-### 💡 So we built Void.
+### 💡 So we built Incubator.
 
 An **open-source repository where every idea matters.** No matter how big or small, polished or raw — if you have an idea, this is the place to share it. The community will help you validate it, refine it, and if it's worth building — **we build it together.**
 
-| The Old Way | The Void Way |
+| The Old Way | The Incubator Way |
 |:---|:---|
 | 💭 Ideas stay in your head | 💡 Ideas are shared publicly |
 | 🔒 Closed groups, no transparency | 🌍 Open-source, fully transparent |
@@ -81,7 +81,7 @@ An **open-source repository where every idea matters.** No matter how big or sma
 
 ## 🧬 Idea Lifecycle
 
-Every idea on Void goes through a structured lifecycle to ensure quality and collaborative refinement:
+Every idea on Incubator goes through a structured lifecycle to ensure quality and collaborative refinement:
 
 1. **New:** 💡 Freshly submitted ideas awaiting review.
 2. **Under Discussion:** 💬 The community is actively brainstorming and providing feedback.
@@ -93,7 +93,7 @@ For a detailed breakdown of the lifecycle and labels, please read the [Idea Life
 
 ## 🤝 Community
 
-Void thrives on community participation! Whether you're an idea generator, a constructive critic, or a builder, there's a place for you here.
+Incubator thrives on community participation! Whether you're an idea generator, a constructive critic, or a builder, there's a place for you here.
 
 - Join our [Discussions](../../discussions) to introduce yourself.
 - Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to understand our community standards.
@@ -108,7 +108,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ---
 <div align="center">
-  <i>Start from Void. Build without limits. 🚀</i>
+  <i>Start from Incubator. Build without limits. 🚀</i>
   <br><br>
-  <sub>An <a href="https://github.com/Idea-Verse">Idea-Verse</a> project</sub>
+  <sub>An <a href="https://github.com/OriginDock">OriginDock</a> project</sub>
 </div>

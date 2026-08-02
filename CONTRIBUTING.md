@@ -1,12 +1,12 @@
-# Contributing to Void
+# Contributing to Incubator
 
-First off, thank you for considering contributing to **Void**! It's people like you that make Void the premier open-source platform for discovering and building great ideas.
+First off, thank you for considering contributing to **Incubator**! It's people like you that make Incubator the premier open-source platform for discovering and building great ideas.
 
 ---
 
 ## 🎯 Our Core Philosophy: Potential First & Discussions Only
 
-At Void:
+At Incubator:
 - **Ideas live EXCLUSIVELY in GitHub Discussions (`💡 Ideas`)**.
 - **GitHub Issues are reserved ONLY for bugs, code tasks, and PR tracking**.
 
