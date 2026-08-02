@@ -1,8 +1,8 @@
 # The Potential-First Idea Lifecycle
 
-This document explains the lifecycle of an idea submitted to **Void**. 
+This document explains the lifecycle of an idea submitted to **Incubator**. 
 
-In Void, **Ideas live EXCLUSIVELY in GitHub Discussions (`💡 Ideas`)**. Issues are strictly reserved for bug reports and implementation tasks. This avoids any naming conflicts and keeps ideation clean, open, and focused on potential.
+In Incubator, **Ideas live EXCLUSIVELY in GitHub Discussions (`💡 Ideas`)**. Issues are strictly reserved for bug reports and implementation tasks. This avoids any naming conflicts and keeps ideation clean, open, and focused on potential.
 
 ---
 

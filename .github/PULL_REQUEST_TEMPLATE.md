@@ -1,6 +1,6 @@
 ## 💬 Discussion URL
 <!-- Required: Paste the link to the GitHub Discussion thread where this idea was evaluated and voted on -->
-Discussion: https://github.com/Idea-Verse/void/discussions/
+Discussion: https://github.com/OriginDock/incubator/discussions/
 
 ## 📌 Related Issue / Task
 Fixes #

@@ -100,7 +100,7 @@ Just as Grafana became the standard interface for visualizing metrics from many 
 
 ---
 
-## 📋 Submission Checklist (Void Standards)
+## 📋 Submission Checklist (Incubator Standards)
 
 - [x] Category selected (`cat: tool`)
 - [x] Clear problem statement with 10 key friction points
