@@ -1,0 +1,117 @@
+name: Discord Announcements
+
+on:
+  discussion:
+    types: [created]
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  discord-notify:
+    name: Post to Discord Announcement Channel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Webhook Notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "⚠️ DISCORD_WEBHOOK_URL secret is not set. Skipping notification."
+            exit 0
+          fi
+
+          EVENT_NAME="${{ github.event_name }}"
+          ACTION="${{ github.event.action }}"
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # 1. Pull Request Closed / Merged
+          if [ "$EVENT_NAME" = "pull_request" ] && [ "$ACTION" = "closed" ]; then
+            IS_MERGED="${{ github.event.pull_request.merged }}"
+            if [ "$IS_MERGED" != "true" ]; then
+              echo "ℹ️ Pull request was closed without being merged. Skipping."
+              exit 0
+            fi
+            TITLE="🚀 PR Merged: #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
+            URL="${{ github.event.pull_request.html_url }}"
+            AUTHOR="${{ github.event.pull_request.user.login }}"
+            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
+            EVENT_LABEL="PR Merged 🚀"
+            COLOR=5763719 # Green (0x57F287)
+            BODY_PREVIEW="${{ github.event.pull_request.body }}"
+
+          # 2. Pull Request Opened
+          elif [ "$EVENT_NAME" = "pull_request" ] && [ "$ACTION" = "opened" ]; then
+            TITLE="🔀 New PR Opened: #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
+            URL="${{ github.event.pull_request.html_url }}"
+            AUTHOR="${{ github.event.pull_request.user.login }}"
+            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
+            EVENT_LABEL="New PR 🔀"
+            COLOR=3447003 # Blue (0x3498DB)
+            BODY_PREVIEW="${{ github.event.pull_request.body }}"
+
+          # 3. Discussion Created
+          elif [ "$EVENT_NAME" = "discussion" ] && [ "$ACTION" = "created" ]; then
+            TITLE="💡 New Discussion: ${{ github.event.discussion.title }}"
+            URL="${{ github.event.discussion.html_url }}"
+            AUTHOR="${{ github.event.discussion.user.login }}"
+            AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
+            EVENT_LABEL="New Discussion 💡"
+            COLOR=15844367 # Gold (0xF1C40F)
+            BODY_PREVIEW="${{ github.event.discussion.body }}"
+
+          else
+            echo "ℹ️ Event type not targeted. Skipping."
+            exit 0
+          fi
+
+          # Truncate preview if too long
+          if [ ${#BODY_PREVIEW} -gt 280 ]; then
+            BODY_PREVIEW="${BODY_PREVIEW:0:277}..."
+          fi
+
+          # Build Discord Webhook Payload
+          PAYLOAD=$(jq -n \
+            --arg username "OriginDock Incubator" \
+            --arg avatar_url "https://github.com/OriginDock.png" \
+            --arg title "$TITLE" \
+            --arg url "$URL" \
+            --arg author "$AUTHOR" \
+            --arg author_avatar "$AUTHOR_AVATAR" \
+            --arg author_url "https://github.com/$AUTHOR" \
+            --arg repo "${{ github.repository }}" \
+            --arg event_label "$EVENT_LABEL" \
+            --arg desc "$BODY_PREVIEW" \
+            --arg timestamp "$TIMESTAMP" \
+            --argjson color "$COLOR" \
+            '{
+              username: $username,
+              avatar_url: $avatar_url,
+              embeds: [{
+                title: $title,
+                url: $url,
+                description: $desc,
+                color: $color,
+                author: {
+                  name: $author,
+                  icon_url: $author_avatar,
+                  url: $author_url
+                },
+                fields: [
+                  { name: "Repository", value: $repo, inline: true },
+                  { name: "Event Type", value: $event_label, inline: true }
+                ],
+                footer: {
+                  text: "OriginDock Incubator • GitHub",
+                  icon_url: "https://github.com/OriginDock.png"
+                },
+                timestamp: $timestamp
+              }]
+            }')
+
+          # Send HTTP POST to Discord Webhook
+          curl -s -H "Content-Type: application/json" \
+               -X POST \
+               -d "$PAYLOAD" \
+               "$DISCORD_WEBHOOK_URL"
+
+          echo "✅ Discord announcement sent successfully!"
