@@ -8,6 +8,7 @@
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+  [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white)](https://discord.gg/Ka6vKFHQZ)
   [![GitHub Issues](https://img.shields.io/github/issues/OriginDock/incubator)](https://github.com/OriginDock/incubator/issues)
   [![GitHub Discussions](https://img.shields.io/github/discussions/OriginDock/incubator)](https://github.com/OriginDock/incubator/discussions)
   [![Contributors](https://img.shields.io/github/contributors/OriginDock/incubator)](https://github.com/OriginDock/incubator/graphs/contributors)
@@ -68,6 +69,7 @@ An **open-source repository where every idea matters.** No matter how big or sma
 | :---: | :--- | :--- |
 | **💡 Propose Idea** | Have a spark? Share your idea in Discussions. | [Propose an Idea](../../discussions/new?category=ideas) |
 | **💬 Discuss & Vote** | Join discussions, vote with 👍 (+1), and evaluate ideas. | [Join Discussions](../../discussions) |
+| **💬 Join Discord** | Chat with the community in real-time & get instant feedback. | [Join Discord](https://discord.gg/Ka6vKFHQZ) |
 | **🔍 Browse Tasks** | Explore technical tasks and bugs ready to build. | [Browse Issues](../../issues) |
 | **🛠️ Build** | Ready to code? Help implement an approved idea. | [Contribute](./CONTRIBUTING.md) |
 
@@ -95,8 +97,9 @@ For a detailed breakdown of the lifecycle and labels, please read the [Idea Life
 
 Incubator thrives on community participation! Whether you're an idea generator, a constructive critic, or a builder, there's a place for you here.
 
-- Join our [Discussions](../../discussions) to introduce yourself.
-- Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to understand our community standards.
+- **💬 Join our Discord:** Chat in real-time, share ideas, and hang out with the community on [Discord](https://discord.gg/Ka6vKFHQZ).
+- **💡 GitHub Discussions:** Share and evaluate ideas in [Discussions](../../discussions).
+- **📜 Code of Conduct:** Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to understand our community standards.
 
 ## 🛠️ Contributing
 
