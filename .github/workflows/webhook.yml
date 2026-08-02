@@ -14,6 +14,16 @@ jobs:
       - name: Send Discord Webhook Notification
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+          DISCUSSION_TITLE: ${{ github.event.discussion.title }}
+          DISCUSSION_BODY: ${{ github.event.discussion.body }}
+          DISCUSSION_URL: ${{ github.event.discussion.html_url }}
+          DISCUSSION_AUTHOR: ${{ github.event.discussion.user.login }}
         run: |
           if [ -z "$DISCORD_WEBHOOK_URL" ]; then
             echo "⚠️ DISCORD_WEBHOOK_URL secret is not set. Skipping notification."
@@ -26,38 +36,37 @@ jobs:
 
           # 1. Pull Request Closed / Merged
           if [ "$EVENT_NAME" = "pull_request" ] && [ "$ACTION" = "closed" ]; then
-            IS_MERGED="${{ github.event.pull_request.merged }}"
-            if [ "$IS_MERGED" != "true" ]; then
+            if [ "$PR_MERGED" != "true" ]; then
               echo "ℹ️ Pull request was closed without being merged. Skipping."
               exit 0
             fi
-            TITLE="🚀 PR Merged: #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
-            URL="${{ github.event.pull_request.html_url }}"
-            AUTHOR="${{ github.event.pull_request.user.login }}"
+            TITLE="🚀 PR Merged: #${PR_NUMBER} — ${PR_TITLE}"
+            URL="$PR_URL"
+            AUTHOR="$PR_AUTHOR"
             AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="PR Merged 🚀"
             COLOR=5763719 # Green (0x57F287)
-            BODY_PREVIEW="${{ github.event.pull_request.body }}"
+            BODY_PREVIEW="$PR_BODY"
 
           # 2. Pull Request Opened
           elif [ "$EVENT_NAME" = "pull_request" ] && [ "$ACTION" = "opened" ]; then
-            TITLE="🔀 New PR Opened: #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
-            URL="${{ github.event.pull_request.html_url }}"
-            AUTHOR="${{ github.event.pull_request.user.login }}"
+            TITLE="🔀 New PR Opened: #${PR_NUMBER} — ${PR_TITLE}"
+            URL="$PR_URL"
+            AUTHOR="$PR_AUTHOR"
             AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="New PR 🔀"
             COLOR=3447003 # Blue (0x3498DB)
-            BODY_PREVIEW="${{ github.event.pull_request.body }}"
+            BODY_PREVIEW="$PR_BODY"
 
           # 3. Discussion Created
           elif [ "$EVENT_NAME" = "discussion" ] && [ "$ACTION" = "created" ]; then
-            TITLE="💡 New Discussion: ${{ github.event.discussion.title }}"
-            URL="${{ github.event.discussion.html_url }}"
-            AUTHOR="${{ github.event.discussion.user.login }}"
+            TITLE="💡 New Discussion: ${DISCUSSION_TITLE}"
+            URL="$DISCUSSION_URL"
+            AUTHOR="$DISCUSSION_AUTHOR"
             AUTHOR_AVATAR="https://github.com/${AUTHOR}.png"
             EVENT_LABEL="New Discussion 💡"
             COLOR=15844367 # Gold (0xF1C40F)
-            BODY_PREVIEW="${{ github.event.discussion.body }}"
+            BODY_PREVIEW="$DISCUSSION_BODY"
 
           else
             echo "ℹ️ Event type not targeted. Skipping."
@@ -69,7 +78,7 @@ jobs:
             BODY_PREVIEW="${BODY_PREVIEW:0:277}..."
           fi
 
-          # Build Discord Webhook Payload
+          # Build Discord Webhook Payload using jq safely
           PAYLOAD=$(jq -n \
             --arg username "OriginDock Incubator" \
             --arg avatar_url "https://github.com/OriginDock.png" \
@@ -77,7 +86,7 @@ jobs:
             --arg url "$URL" \
             --arg author "$AUTHOR" \
             --arg author_avatar "$AUTHOR_AVATAR" \
-            --arg author_url "https://github.com/$AUTHOR" \
+            --arg author_url "https://github/$AUTHOR" \
             --arg repo "${{ github.repository }}" \
             --arg event_label "$EVENT_LABEL" \
             --arg desc "$BODY_PREVIEW" \
